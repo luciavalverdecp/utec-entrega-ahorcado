@@ -6,7 +6,7 @@ word = get_random_word()
 game = HangmanGame(word)
 
 while True:
-    fallos = []
+    #fallos = []
     letter = input("Ingresá una letra: ").lower().strip()
 
     try:
@@ -22,10 +22,11 @@ while True:
         if game.process_guess(letter):
             print("¡Bien! Esa letra está en la frase.")
         else:
-            fallos.append(letter)
+            #fallos.append(letter)
             print("Esa letra no está en la frase.")
 
         game.display_progress()
+        print("Letras incorrectas: ", game.display_wrong_letters())
         break
 
     except ValueError as e:    

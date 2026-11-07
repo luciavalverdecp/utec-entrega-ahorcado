@@ -6,6 +6,7 @@ class HangmanGame:
         """ Inicializa el juego """
         self.word = word
         self.guessed_letters = []
+        self.wrong_letters = []
         self.max_errors = 6 
         self.errors = 0
 
@@ -34,4 +35,14 @@ class HangmanGame:
             return True
         
         self.errors += 1
+        self.wrong_letters.append(letter)
         return False
+
+
+    def display_wrong_letters(self):
+        """Devuelve las letras erradas de las ingresadas."""
+
+        texto = ""
+        for letra in self.wrong_letters:
+            texto = texto + letra + " "
+        return texto.strip()
