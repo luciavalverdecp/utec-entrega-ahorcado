@@ -13,7 +13,7 @@ class HangmanGame:
     def display_progress(self):
         """Devuelve la frase con las letras adivinadas y '_' en las que faltan."""
 
-        texto = ""
+        texto = "Frase: "
         for letra in self.word:
             if letra in self.guessed_letters:
                 texto = texto+letra + " "
@@ -55,3 +55,20 @@ class HangmanGame:
             for letra in self.guessed_letters:
                 texto = texto + letra + " "
             return texto.strip()
+
+    def is_won(self):
+        
+        for letra in self.word:
+            if letra not in self.guessed_letters:
+             return False
+
+        return True
+
+    def is_lost(self):
+        """Devuelve True si se alcanzó la cantidad máxima de errores."""
+        if self.errors >= self.max_errors:
+            return True
+        else:
+            return False
+        
+
