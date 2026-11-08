@@ -27,7 +27,6 @@ while True:
         if game.process_guess(letter):
             print("¡Bien! Esa letra está en la frase.")
         else:
-            #fallos.append(letter)
             print("Esa letra no está en la frase.")
 
         if game.is_won():
@@ -46,6 +45,7 @@ while True:
 
     except ValueError as e:    
         print(e)
+        game.display_progress()
         print("Letras adivinadas: ", game.display_guessed_letters())
         print("Letras incorrectas: ", game.display_wrong_letters())
         print(f"Errores: {game.errors}/{game.max_errors}")

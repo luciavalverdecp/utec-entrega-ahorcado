@@ -17,7 +17,7 @@ class HangmanGame:
         for letra in self.word:
             if letra in self.guessed_letters:
                 texto = texto + letra
-            else if letra.isdecimal() or letra == "-" or letra == " ":
+            elif letra.isdecimal() or letra == "-" or letra == " ":
                 texto =  texto + letra
             else:
                 texto = texto + "_"
@@ -31,8 +31,6 @@ class HangmanGame:
         if letter in self.guessed_letters or letter in self.wrong_letters:
             return None
 
-        #self.guessed_letters.append(letter) acá esta guardando todas las letras no solo las letras correctas.
-        
         if letter in self.word:
             self.guessed_letters.append(letter)
             return True
