@@ -28,8 +28,7 @@ while True:
         game.display_progress()
         print("Letras adivinadas: ", game.display_guessed_letters())
         print("Letras incorrectas: ", game.display_wrong_letters())
-        print(f"Errores hasta el momento: {game.errors}")
-        print(f"Podés tener hasta {game.max_errors} errores")
+        print(f"Errores: {game.errors}/{game.max_errors}")
         break
 
     except ValueError as e:    
