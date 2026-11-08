@@ -6,7 +6,7 @@ word = get_random_word()
 game = HangmanGame(word)
 
 while True:
-    fallos = []
+    #fallos = [] manejamos las letras erradas con atributos
     letter = input("Ingresá una letra: ").lower().strip()
 
     try:
@@ -16,16 +16,19 @@ while True:
         if not letter.isalpha():
             raise ValueError( "La entrada debe ser una letra, no numeros ni caracteres especiales")
                 
-        if letter in game.guessed_letters:
+        if letter in game.guessed_letters or letter in game.wrong_letters:
             raise ValueError("Ya usaste esa letra.")
 
         if game.process_guess(letter):
             print("¡Bien! Esa letra está en la frase.")
         else:
-            fallos.append(letter)
+            #fallos.append(letter)
             print("Esa letra no está en la frase.")
 
         game.display_progress()
+        print("Letras adivinadas: ", game.display_guessed_letters())
+        print("Letras incorrectas: ", game.display_wrong_letters())
+        print(f"Errores: {game.errors}/{game.max_errors}")
         break
 
     except ValueError as e:    

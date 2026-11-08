@@ -6,6 +6,7 @@ class HangmanGame:
         """ Inicializa el juego """
         self.word = word
         self.guessed_letters = []
+        self.wrong_letters = []
         self.max_errors = 6 
         self.errors = 0
 
@@ -22,16 +23,35 @@ class HangmanGame:
 
 
     def process_guess(self, letter):
-        """ procesa la letra que le ingresas """
+        """ Procesa la letra ingresada y devuelve si fue correcta """
         letter = letter.lower()
 
-        if letter in self.guessed_letters:
+        if letter in self.guessed_letters or letter in self.wrong_letters:
             return None
 
-        self.guessed_letters.append(letter)
+        #self.guessed_letters.append(letter) acá esta guardando todas las letras no solo las letras correctas.
         
         if letter in self.word:
+            self.guessed_letters.append(letter)
             return True
         
         self.errors += 1
+        self.wrong_letters.append(letter)
         return False
+
+
+    def display_wrong_letters(self):
+        """Devuelve las letras erradas de las ingresadas."""
+
+        texto = ""
+        for letra in self.wrong_letters:
+            texto = texto + letra + " "
+        return texto.strip()
+
+    def display_guessed_letters(self):
+            """Devuelve las letras adivinadas de las ingresadas."""
+    
+            texto = ""
+            for letra in self.guessed_letters:
+                texto = texto + letra + " "
+            return texto.strip()
