@@ -7,7 +7,7 @@
 ![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)
 ![Dependencias](https://img.shields.io/badge/dependencias-ninguna-success)
 ![Interfaz](https://img.shields.io/badge/interfaz-terminal-black)
-![Estado](https://img.shields.io/badge/estado-en%20desarrollo-orange)
+![Estado](https://img.shields.io/badge/estado-terminado-success)
 
 </div>
 
