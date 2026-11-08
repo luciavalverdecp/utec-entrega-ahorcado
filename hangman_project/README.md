@@ -1,152 +1,141 @@
-🎮 Juego del Ahorcado (Hangman) en consola
+<div align="center">
 
-Juego del ahorcado hecho en Python que se juega completamente desde la terminal. El jugador debe adivinar una frase oculta (por ejemplo, el título de una película) escribiendo una letra por turno, con un máximo de 6 intentos incorrectos. Las frases se cargan de forma aleatoria desde un archivo de texto, por lo que cada partida es diferente.
+# Juego del Ahorcado
+
+**Adiviná la frase oculta, letra por letra, antes de quedarte sin intentos.**
+
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)
+![Dependencias](https://img.shields.io/badge/dependencias-ninguna-success)
+![Interfaz](https://img.shields.io/badge/interfaz-terminal-black)
+![Estado](https://img.shields.io/badge/estado-en%20desarrollo-orange)
+
+</div>
+
+---
+
+## Descripción
+
+Ahorcado para la terminal escrito en Python. El juego elige al azar una frase (por ejemplo, el título de una película) desde `wordlist.txt` y el jugador tiene que descubrirla escribiendo **una letra por turno**, con un máximo de **6 errores**.
 
 Proyecto de práctica para aplicar estructuras de control, funciones, estructuras de datos, programación orientada a objetos, módulos y manejo de archivos.
 
-📋 Tabla de contenidos
-Reglas del juego
-Estructura del proyecto
-Requisitos
-Cómo ejecutar
-Cómo jugar
-Formato de wordlist.txt
-Descripción de los archivos
-Objetivos de aprendizaje
-Autor
+## Tabla de contenidos
 
-🎯 Reglas del juego
-El jugador adivina la frase oculta letra por letra.
-Solo se aceptan letras como entrada válida (los números y símbolos se rechazan sin penalizar).
-Cada intento incorrecto aumenta el contador de errores.
-El jugador pierde al llegar a 6 errores.
-El jugador gana si descubre todas las letras antes de llegar al límite.
-Después de cada intento se muestran las letras ya usadas y el estado actual de la frase.
-Los caracteres que no son letras (espacios, signos de puntuación) se revelan automáticamente.
-Repetir una letra ya usada no cuenta como error.
-📁 Estructura del proyecto
-hangman_project/
-│
-├── main.py        # Bucle principal del juego
-├── game.py        # Clase HangmanGame (lógica del juego)
-├── utils.py       # Funciones auxiliares (validar entrada, mostrar estado, cargar frases)
-├── wordlist.txt   # Lista de frases (una por línea)
-└── README.md      # Instrucciones y descripción del juego
-⚙️ Requisitos
-Python 3.8 o superior.
-No necesita instalar librerías externas: usa solo la biblioteca estándar de Python.
+- [Inicio rápido](#inicio-rápido)
+- [Reglas](#reglas)
+- [Ejemplo de partida](#ejemplo-de-partida)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Cómo funciona](#cómo-funciona)
+- [Personalizar las frases](#personalizar-las-frases)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [Autores](#autores)
+
+---
+
+## Inicio rápido
+
+**Requisitos:** Python 3.8 o superior. No hace falta instalar nada, solo se usa la biblioteca estándar.
+
+```bash
+# 1. Clonar o descargar el proyecto
+cd hangman_project
+
+# 2. Ejecutar
+python3 main.py      # Linux / macOS
+python main.py       # Windows (si no funciona, probá: py main.py)
+```
 
 Para verificar tu versión de Python:
 
-bash
+```bash
 python --version
-▶️ Cómo ejecutar
-Clona el repositorio o descarga la carpeta del proyecto.
-Entra a la carpeta:
-bash
-   cd hangman_project
-Ejecuta el juego: Windows (PowerShell o CMD):
-powershell
-   python main.py
+```
 
-Linux / macOS:
+## Reglas
 
-bash
-   python3 main.py
+| Situación | Resultado |
+|---|---|
+| La letra está en la frase | Se revela en todas sus posiciones |
+| La letra **no** está en la frase | Suma 1 error |
+| Letra repetida | Se avisa, **no** cuenta como error |
+| Número, símbolo o más de un carácter | Se rechaza, **sin** penalizar |
+| Espacios y guiones | Se muestran automáticamente |
+| Llegás a **6 errores** | Perdés |
+| Descubrís toda la frase | Ganás |
 
-Si python no se reconoce en Windows, prueba con py main.py.
+Después de cada intento se muestran la frase actual, las letras adivinadas, las incorrectas y el contador de errores.
 
-🕹️ Cómo jugar
-Al iniciar, el juego elige una frase al azar de wordlist.txt y la muestra oculta con guiones bajos.
-En cada turno, escribe una letra y presiona Enter.
-Si la letra está en la frase, se revela en todas sus posiciones.
-Si no está, suma un error. Tienes hasta 6 errores.
-La partida termina cuando completas la frase (ganas) o llegas a 6 errores (pierdes).
-Ejemplo de partida
-=== JUEGO DEL AHORCADO ===
+## Ejemplo de partida
 
-Frase:  _ _   _ _ _
-Letras usadas: (ninguna)
+```text
+Frase: _ _   _ _ _
+Letras adivinadas:
+Letras incorrectas:
 Errores: 0/6
 
-Ingresa una letra: o
+Ingresá una letra: e
 
-Frase:  _ _   _ _ _
-Letras usadas: o
-Errores: 1/6
-
-Ingresa una letra: e
-
-Frase:  e _   _ e _
-Letras usadas: e, o
-Errores: 1/6
+¡Bien! Esa letra está en la frase.
+Frase: e _   _ e _
+Letras adivinadas: e
+Letras incorrectas:
+Errores: 0/6
 
 ...
 
 ¡Felicidades, ganaste! La frase era: el rey
+```
 
-El ejemplo es ilustrativo; el formato exacto de salida puede variar según tu implementación.
+> El ejemplo es ilustrativo; el formato exacto de la salida puede variar.
 
-📝 Formato de wordlist.txt
-Una frase por línea.
-En minúsculas y, preferentemente, sin tildes ni ñ para que el jugador no tenga que adivinar caracteres especiales.
-Sin líneas vacías ni comentarios.
-El programa limpia los espacios sobrantes con strip() al leer cada línea.
+## Estructura del proyecto
 
-Ejemplo:
+```text
+hangman_project/
+├── main.py         # Bucle principal del juego
+├── game.py         # Clase HangmanGame (lógica)
+├── utils.py        # Carga de frases desde el archivo
+├── wordlist.txt    # Frases posibles, una por línea
+└── README.md
+```
 
+## Cómo funciona
+
+| Archivo | Responsabilidad |
+|---|---|
+| `main.py` | Pide letras al jugador, valida la entrada (una sola letra, solo alfabética, no repetida), limpia la pantalla entre turnos y anuncia el resultado. |
+| `game.py` | Clase `HangmanGame`: guarda la frase, las letras acertadas y falladas y los errores; procesa cada intento; arma la frase visible; determina si se ganó o se perdió. |
+| `utils.py` | `get_random_word()`: lee `wordlist.txt`, ignora líneas vacías y devuelve una frase al azar en minúsculas. |
+| `wordlist.txt` | Banco de frases. |
+
+## Personalizar las frases
+
+Editá `wordlist.txt` y agregá una frase por línea:
+
+```text
 el rey leon
 toy story
 volver al futuro
-el padrino
-buscando a nemo
-titanic
-matrix
-jurassic park
-la bella y la bestia
-el hobbit
+```
 
-Puedes agregar tus propias frases abriendo el archivo y escribiendo una nueva por línea. Para editarlo en Windows:
+Recomendaciones:
 
-powershell
-notepad wordlist.txt
-🧩 Descripción de los archivos
-main.py
+- Usá minúsculas y, de ser posible, **sin tildes ni ñ**, para que el jugador no tenga que adivinar caracteres especiales.
+- No dejes comentarios en el archivo (las líneas vacías se ignoran automáticamente).
 
-Punto de entrada del programa. Contiene el bucle principal del juego: carga las frases, crea la partida, pide letras al jugador, muestra el estado después de cada intento y anuncia el resultado final. También permite jugar otra partida al terminar.
+## Objetivos de aprendizaje
 
-game.py
+- Estructuras de control: condicionales y bucles
+- Funciones y modularización del código
+- Estructuras de datos: cadenas y listas
+- Programación orientada a objetos: clases y objetos
+- Módulos e imports
+- Lectura de archivos de texto y entrada del usuario
+- Validación de entradas y manejo de excepciones
+- Buenas prácticas de estilo (PEP 8)
 
-Contiene la clase HangmanGame, que encapsula toda la lógica del juego:
+## Autores
 
-Guarda la frase secreta, las letras adivinadas, las letras falladas y el contador de errores.
-Procesa cada intento del jugador (acierto, error o letra repetida).
-Construye el estado visible de la frase (letras reveladas y guiones bajos).
-Determina si el jugador ganó o perdió.
-utils.py
+Gianella Meringolo · Joaquín Vila · Lucía Valverde
 
-Funciones auxiliares que mantienen main.py y game.py limpios:
-
-Cargar frases desde wordlist.txt (ignorando líneas vacías).
-Validar la entrada del usuario (una sola letra, solo caracteres alfabéticos).
-Mostrar el estado actual de la partida en pantalla.
-wordlist.txt
-
-Archivo de texto con las frases posibles, una por línea.
-
-📚 Objetivos de aprendizaje
-
-Con este proyecto se practica:
-
-Estructuras de control: condicionales y bucles para manejar el flujo del juego.
-Funciones: encapsular y estructurar la lógica.
-Estructuras de datos: cadenas, listas, conjuntos y diccionarios.
-Programación orientada a objetos: clases, objetos y herencia.
-Módulos e imports: separar el código en varios archivos.
-Entrada/salida: lectura de datos del usuario y de archivos de texto.
-Validación de entrada desde la línea de comandos.
-Depuración básica y resolución de problemas.
-Buenas prácticas de estilo siguiendo la guía PEP 8.
-👤 Autor
-
-Gianella Meringolo, Joaquin Vila y Lucia Valverde — Proyecto realizado como parte del curso en UTEC.
+Proyecto realizado como parte del curso en **UTEC**.
