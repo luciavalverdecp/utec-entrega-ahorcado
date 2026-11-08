@@ -16,7 +16,9 @@ class HangmanGame:
         texto = "Frase: "
         for letra in self.word:
             if letra in self.guessed_letters:
-                texto = texto+letra + " "
+                texto = texto + letra
+            else if letra.isdecimal() or letra == "-" or letra == " ":
+                texto =  texto + letra
             else:
                 texto = texto + "_"
         print(texto)

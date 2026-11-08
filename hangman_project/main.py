@@ -46,3 +46,6 @@ while True:
 
     except ValueError as e:    
         print(e)
+        print("Letras adivinadas: ", game.display_guessed_letters())
+        print("Letras incorrectas: ", game.display_wrong_letters())
+        print(f"Errores: {game.errors}/{game.max_errors}")
