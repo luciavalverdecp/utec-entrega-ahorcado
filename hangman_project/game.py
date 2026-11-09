@@ -57,6 +57,7 @@ class HangmanGame:
             return texto.strip()
 
     def is_won(self):
+        """Devuelve True si se adivinaron todas las letras de la frase."""
         
         for letra in self.word:
             if letra.isdecimal() or letra == "-" or letra == " ":
