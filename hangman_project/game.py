@@ -59,8 +59,11 @@ class HangmanGame:
     def is_won(self):
         
         for letra in self.word:
+            if letra.isdecimal() or letra == "-" or letra == " ":
+                continue
+    
             if letra not in self.guessed_letters:
-             return False
+                return False
 
         return True
 
